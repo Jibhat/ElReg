@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:elevation="5dp"
+                                    android:orientation="vertical">
+
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="5dp">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="This is the report title"
+                android:id="@+id/title"
+                android:layout_weight="0.11"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="This is the report summary, it's quite likely to be long and waffley"
+                android:id="@+id/summary"
+                android:layout_weight="0.11"
+                android:layout_centerVertical="true" android:layout_alignParentStart="true"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="last updated"
+                android:id="@+id/updated"
+                android:layout_weight="0.11"
+                android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"/>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

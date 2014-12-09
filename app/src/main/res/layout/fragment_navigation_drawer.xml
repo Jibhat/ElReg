@@ -1,0 +1,18 @@
+<LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:scaleType="fitXY" android:layout_width="match_parent" android:layout_height="60dp" android:src="@drawable/reglogo"/>
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:choiceMode="singleChoice"
+              android:divider="@android:color/transparent"
+              android:dividerHeight="0dp"
+              android:background="#efffffff"
+              android:id="@+id/drawer_list"
+              tools:context=".NavigationDrawerFragment" />
+
+    </LinearLayout>

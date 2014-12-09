@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">El Reg</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="categories">
+        <item>The Register</item>
+        <item>Data Centre</item>
+        <item>Software</item>
+        <item>Hardware</item>
+        <item>Networks</item>
+        <item>Security</item>
+        <item>Jobs</item>
+        <item>Business</item>
+        <item>Science</item>
+        <item>Bootnotes</item>
+    </string-array>
+
+    <string-array name="feeds">
+        <item>http://www.theregister.co.uk/headlines.atom</item>
+        <item>http://www.theregister.co.uk/data_centre/headlines.atom</item>
+        <item>http://www.theregister.co.uk/software/headlines.atom</item>
+        <item>http://www.theregister.co.uk/hardware/headlines.atom</item>
+        <item>http://www.theregister.co.uk/networks/headlines.atom</item>
+        <item>http://www.theregister.co.uk/security/headlines.atom</item>
+        <item>http://www.theregister.co.uk/jobs/headlines.atom</item>
+        <item>http://www.theregister.co.uk/business/headlines.atom</item>
+        <item>http://www.theregister.co.uk/science/headlines.atom</item>
+        <item>http://www.theregister.co.uk/bootnotes/headlines.atom</item>
+    </string-array>
+
+</resources>
