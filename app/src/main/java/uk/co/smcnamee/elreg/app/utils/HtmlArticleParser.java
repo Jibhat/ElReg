@@ -41,7 +41,6 @@ public class HtmlArticleParser {
         reader.parse(new InputSource(is));
 
         article = handler.getText();
-        Log.e("article", article);
 
         return article;
 
@@ -51,9 +50,14 @@ public class HtmlArticleParser {
         private StringBuilder sb = new StringBuilder();
         private boolean foundBody = false;
         private boolean keep = true;
+        private String currentElement = "";
+        private String lastElement = "";
 
         public void characters(char[] ch, int start, int length) throws SAXException {
-            if (keep && foundBody) {
+            if (keep && foundBody && (currentElement.equalsIgnoreCase("p")
+                    || (currentElement.equalsIgnoreCase("a") && lastElement.equalsIgnoreCase("p"))
+                    || (currentElement.equalsIgnoreCase("i") && lastElement.equalsIgnoreCase("p"))
+                    || (currentElement.equalsIgnoreCase("blockquote")))) {
                 sb.append(ch, start, length);
             }
         }
@@ -77,15 +81,37 @@ public class HtmlArticleParser {
                 }
             } else if(localName.equalsIgnoreCase("p") && atts.getLength() > 0){
                 keep = false;
+            }else if(localName.equalsIgnoreCase("p") && atts.getLength() == 0){
+                keep = true;
+                currentElement = qName;
+            }else if(localName.equalsIgnoreCase("a") && foundBody && lastElement.equalsIgnoreCase("p")){
+                keep = true;
+                currentElement = qName;
+            }else if(localName.equalsIgnoreCase("i") && foundBody && lastElement.equalsIgnoreCase("p")){
+                keep = true;
+                currentElement = qName;
+            }else if(localName.equalsIgnoreCase("blockquote") && foundBody){
+                keep = true;
+                currentElement = qName;
+            }else{
+                keep = false;
             }
         }
 
         public void endElement(String uri, String localName, String qName)
                 throws SAXException {
-            if(localName.equalsIgnoreCase("div") && foundBody){
-                //foundBody = false;
+            if(keep && foundBody && (localName.equalsIgnoreCase("p") || localName.equalsIgnoreCase("blockquote"))){
+                sb.append("\n\n");
+                lastElement = currentElement;
+            }else if((localName.equalsIgnoreCase("a") || localName.equalsIgnoreCase("i") || localName.equalsIgnoreCase("blockquote"))
+                    && foundBody && keep){
+
+            }else{
+                keep = true;
+                lastElement = currentElement;
+                currentElement = "";
             }
-            keep = true;
+
         }
     }
 

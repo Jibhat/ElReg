@@ -1,0 +1,43 @@
+<LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="56dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginRight="12dp"
+                      tools:context="uk.co.smcnamee.elreg.app.fragments.articles.Article">
+            <!-- TODO: Update blank fragment layout -->
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:text="Title goes here"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading_text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:text="Heading goes here"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/body_text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="body here"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

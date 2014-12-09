@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import uk.co.smcnamee.elreg.app.R;
+import uk.co.smcnamee.elreg.app.activities.MainActivity;
 import uk.co.smcnamee.elreg.app.utils.HtmlArticleGrabber;
 
 import java.net.URI;
@@ -33,7 +34,7 @@ public class Result extends FrameLayout {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                HtmlArticleGrabber.getInstance(context).grabArticle(link);
+                HtmlArticleGrabber.getInstance(context, title, summary).grabArticle(link);
             }
         });
     }

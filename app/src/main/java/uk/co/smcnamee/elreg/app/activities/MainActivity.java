@@ -2,6 +2,8 @@ package uk.co.smcnamee.elreg.app.activities;
 
 import android.app.Activity;
 
+import android.net.Uri;
+import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -19,19 +21,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import uk.co.smcnamee.elreg.app.fragments.NavigationDrawerFragment;
 import uk.co.smcnamee.elreg.app.R;
+import uk.co.smcnamee.elreg.app.fragments.articles.Article;
 import uk.co.smcnamee.elreg.app.layouts.results.Result;
 import uk.co.smcnamee.elreg.app.utils.FeedGrabber;
 
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, Article.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private FeedGrabber feedGrabber;
+
+    private String FEEDS = "Feeds_List";
+    private String SECTIONS = "Sections_List";
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -44,6 +50,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         Toolbar tb = (Toolbar)findViewById(R.id.nav);
@@ -64,15 +71,30 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putStringArray(SECTIONS,sections);
+        outState.putStringArray(FEEDS,feeds);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .addToBackStack(null)
                 .commit();
     }
 
     public void onSectionAttached(int number) {
+
+        if(feeds == null || sections == null){
+            sections = getResources().getStringArray(R.array.categories);
+            feeds = getResources().getStringArray(R.array.feeds);
+            feedGrabber = FeedGrabber.getInstance(this);
+        }
+
         switch (number) {
             case 1:
                 mTitle = sections[number-1];
@@ -85,8 +107,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 3:
                 mTitle = sections[number-1];
                 feedGrabber.grabResults(feeds[number- 1]);
-                break;
-            case 9923:
                 break;
             default:
                 mTitle = sections[number-1];
@@ -147,6 +167,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 a.setVisibility(ProgressBar.GONE);
             }
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**
